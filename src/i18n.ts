@@ -3,7 +3,7 @@ const en = {
   search: 'Search products',
   announce: 'Shipping fees are always shown clearly before you pay.',
   hero: {
-    eyebrow: 'Welcome to MARTO',
+    eyebrow: 'Hi there! Welcome to MARTO 👋',
     title: 'Shop Smart. Live Better.',
     text: 'Everyday products for your home, style and family, with clear prices, honest descriptions and tracked orders.',
     cta: 'Shop Now',
@@ -53,7 +53,7 @@ const ml: typeof en = {
   search: 'ഉൽപ്പന്നങ്ങൾ തിരയുക',
   announce: 'പണം അടയ്ക്കുന്നതിന് മുമ്പ് ഷിപ്പിംഗ് നിരക്ക് വ്യക്തമായി കാണിക്കും.',
   hero: {
-    eyebrow: 'MARTO-യിലേക്ക് സ്വാഗതം',
+    eyebrow: 'നമസ്കാരം! MARTO-യിലേക്ക് സ്വാഗതം 👋',
     title: 'സ്മാർട്ടായി ഷോപ്പ് ചെയ്യൂ. നന്നായി ജീവിക്കൂ.',
     text: 'വീടിനും സ്റ്റൈലിനും കുടുംബത്തിനും വേണ്ട ദൈനംദിന ഉൽപ്പന്നങ്ങൾ. വ്യക്തമായ വില, സത്യസന്ധമായ വിവരണം, ട്രാക്ക് ചെയ്യാവുന്ന ഓർഡറുകൾ.',
     cta: 'ഇപ്പോൾ ഷോപ്പ് ചെയ്യൂ',
