@@ -11,9 +11,10 @@ type Props = {
   onQuery: (q: string) => void
   cartCount: number
   wishCount: number
+  onCart: () => void
 }
 
-export default function Header({ t, lang, onLang, query, onQuery, cartCount, wishCount }: Props) {
+export default function Header({ t, lang, onLang, query, onQuery, cartCount, wishCount, onCart }: Props) {
   const [open, setOpen] = useState(false)
   const links = [
     { href: '#home', label: t.nav.home },
@@ -47,7 +48,7 @@ export default function Header({ t, lang, onLang, query, onQuery, cartCount, wis
               <Icon name="heart" />
               {wishCount > 0 && <span className="count">{wishCount}</span>}
             </button>
-            <button className="icon-btn" aria-label={t.cartLabel}>
+            <button className="icon-btn" aria-label={t.cartLabel} onClick={onCart}>
               <Icon name="cart" />
               {cartCount > 0 && <span className="count">{cartCount}</span>}
             </button>
