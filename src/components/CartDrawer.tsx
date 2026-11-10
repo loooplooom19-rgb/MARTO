@@ -20,6 +20,33 @@ const money = new Intl.NumberFormat('en-IN', {
   maximumFractionDigits: 0,
 })
 
+function orderErrorMessage(err: unknown, ml: boolean): string {
+  const raw = String((err as { message?: string } | null)?.message ?? '')
+  if (raw.includes('phone number')) {
+    return ml
+      ? 'ഈ ഫോൺ നമ്പറിൽ നിന്ന് ഒരുപാട് ഓർഡറുകൾ ലഭിച്ചു. ദയവായി ഞങ്ങളെ ബന്ധപ്പെടുക.'
+      : 'Too many orders were placed from this phone number. Please contact support.'
+  }
+  if (raw.includes('Too many orders') || raw.includes('many orders right now')) {
+    return ml
+      ? 'ഇപ്പോൾ ഒരുപാട് ഓർഡറുകൾ ലഭിക്കുന്നു. കുറച്ചു കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക.'
+      : 'We are receiving many orders right now. Please try again in a little while.'
+  }
+  if (raw.includes('Insufficient stock') || raw.includes('Product unavailable')) {
+    return ml
+      ? 'ചില ഉൽപ്പന്നങ്ങൾ സ്റ്റോക്കിൽ ഇല്ല. പേജ് റിഫ്രഷ് ചെയ്ത് കാർട്ട് പരിശോധിക്കുക.'
+      : 'Some items are no longer in stock. Please refresh the page and check your cart.'
+  }
+  if (raw.includes('Maximum 10')) {
+    return ml
+      ? 'ഒരു ഉൽപ്പന്നത്തിന്റെ 10 എണ്ണം വരെ മാത്രമേ ഓർഡർ ചെയ്യാനാകൂ.'
+      : 'You can order up to 10 of one product.'
+  }
+  return ml
+    ? 'ഓർഡർ പൂർത്തിയാക്കാനായില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.'
+    : 'Could not place your order. Please try again.'
+}
+
 export default function CartDrawer({
   open,
   onClose,
@@ -94,11 +121,7 @@ export default function CartDrawer({
       onOrderPlaced()
     } catch (err) {
       console.error('MARTO order error:', err)
-      setError(
-        ml
-          ? 'ഓർഡർ പൂർത്തിയാക്കാനായില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.'
-          : 'Could not place your order. Please try again.'
-      )
+      setError(orderErrorMessage(err, ml))
     } finally {
       setPlacing(false)
     }

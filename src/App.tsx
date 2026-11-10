@@ -49,7 +49,7 @@ export default function App() {
 
     setCart((current) => {
       const quantity = current[id] ?? 0
-      if (quantity >= product.stock) return current
+      if (quantity >= Math.min(product.stock, 10)) return current
       return { ...current, [id]: quantity + 1 }
     })
   }
@@ -69,7 +69,7 @@ export default function App() {
 
     setCart((current) => ({
       ...current,
-      [id]: Math.min(quantity, product.stock),
+      [id]: Math.min(quantity, product.stock, 10),
     }))
   }
 
